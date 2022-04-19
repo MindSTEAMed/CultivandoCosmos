@@ -8,7 +8,7 @@ PARA EL CONTROL Y MONITOREO DE LA TEMPERATURA Y HUMEDAD DEL AIRE Y LA TIERRA
  - adafruit/[DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
  - Blynk/[SimpleEsp8266](https://github.com/blynkkk/blynk-library)
 
-1. IDE
-Board: NodeMCU 1.0(ESP-12E Module)
+1. IDE SETUP
+ - Board: NodeMCU 1.0(ESP-12E Module)
 
 0. DIAGRAM
