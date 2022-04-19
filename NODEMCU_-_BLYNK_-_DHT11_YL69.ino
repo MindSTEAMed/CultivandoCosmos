@@ -10,15 +10,15 @@
 #include <BlynkSimpleEsp8266.h> //LIBRERIA PARA PODER USAR LA APLICACIÓN BLYNK
 #include <DHT.h> //LIBRERIA PARA QUE FUNCIONE EL TERMOMETRO DHT11
 
- int output_value ; //CREACIÓN DE UNA VARIABLE (ALGO NECESARIO PARA PODER MEDIR COSAS)
+
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "***********"; //TOKEN PARA CONECTAR MI CELULAR CON LA TARJETA NODEMCU
+char auth[] = "aahlCOeIcIh8FS3OcwHXYgXmBqTpnKT1"; //TOKEN PARA CONECTAR MI CELULAR CON LA TARJETA NODEMCU
  
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "*******"; //NOMBRE DEL WIFI
-char pass[] = "*******"; //CONTRASEÑA DEL WIFI
+char ssid[] = "LUDOCORI 1"; //NOMBRE DEL WIFI
+char pass[] = "ludocori1234"; //CONTRASEÑA DEL WIFI
  
 #define DHTPIN 0          // CONECTAR AL PIN D3
  
@@ -29,6 +29,14 @@ char pass[] = "*******"; //CONTRASEÑA DEL WIFI
  
 DHT dht(DHTPIN, DHTTYPE);  //ACTIVAR LIBRERIA DHT
 BlynkTimer timer;         //ACTIVAR LIBRERIA BLYNKTIMER PARA MEDIR CADA CIERTOS SEGUNDOS
+
+void moisture() {
+  int value = analogRead(A0);
+  value = map(value, 0, 1023, 0, 100);
+  Blynk.virtualWrite(V0, value);
+
+  Serial.println(value);
+}
  
 // This function sends Arduino's up time every second to Virtual Pin (5).
 // In the app, Widget's reading frequency should be set to PUSH. This means
@@ -64,15 +72,11 @@ void setup()
  
   // Setup a function to be called every second
   timer.setInterval(1000L, sendSensor);
+  timer.setInterval(100L, moisture);
 }
  
 void loop()        //REPETICIÓN DE CÓDIGO
 {
-  output_value= analogRead(A0);  //LECTURA DE SENSOR DE HUMEDAD EN PIN A0
-Serial.print("Moisture : ");       //IMPRIMIR MENSAJE
- Serial.print(output_value);       //IMPRIMIR VALOR DE HUMEDAD
- Serial.print("\n");           
-delay(1000); 
   Blynk.run();                //CORRER PROGRAMA BLYNK
   timer.run();
 }
