@@ -13,12 +13,12 @@
  int output_value ; //CREACIÓN DE UNA VARIABLE (ALGO NECESARIO PARA PODER MEDIR COSAS)
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "aahlCOeIcIh8FS3OcwHXYgXmBqTpnKT1"; //TOKEN PARA CONECTAR MI CELULAR CON LA TARJETA NODEMCU
+char auth[] = "***********"; //TOKEN PARA CONECTAR MI CELULAR CON LA TARJETA NODEMCU
  
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "Mindsteam 2.4G"; //NOMBRE DEL WIFI
-char pass[] = "20035772"; //CONTRASEÑA DEL WIFI
+char ssid[] = "*******"; //NOMBRE DEL WIFI
+char pass[] = "*******"; //CONTRASEÑA DEL WIFI
  
 #define DHTPIN 0          // CONECTAR AL PIN D3
  
