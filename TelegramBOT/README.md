@@ -1,4 +1,4 @@
 #TelegramBOT
 BOTS:
-t.me/BotFather => /newbot
-t.me/myidbot   => /getgroupid@myidbot  /getid@myidbot
+1. t.me/BotFather => /newbot
+2. t.me/myidbot   => /getgroupid@myidbot  /getid@myidbot
