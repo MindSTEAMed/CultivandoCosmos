@@ -12,11 +12,11 @@
 #include <ArduinoJson.h>
 
 // Replace with your network credentials
-const char* ssid = "Mindsteam 2.4G";
-const char* password = "20035772";
+const char* ssid = "++++++++";
+const char* password = "++++++++";
 
 // Initialize Telegram BOT
-#define BOTtoken "5284459963:AAFdqFLIV3H5q6m0PBshIehMif8u2PGII1Q"  // your Bot Token (Get from Botfather)
+#define BOTtoken "+++++++++++++++++++++++++"  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
