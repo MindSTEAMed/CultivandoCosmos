@@ -21,7 +21,7 @@ const char* password = "++++++++";
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
 // message you
-#define CHAT_ID "-1001707799843"
+#define CHAT_ID "-+++++++++++"
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 WiFiClientSecure client;
