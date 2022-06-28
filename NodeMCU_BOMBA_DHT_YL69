@@ -1,0 +1,59 @@
+/*Irrigation monitoring system with Nodemcu
+   http://srituhobby.com
+*/
+
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+#include <DHT.h> //LIBRERIA PARA QUE FUNCIONE EL TERMOMETRO DHT11
+
+#define DHTPIN 0          // CONECTAR AL PIN D3
+#define DHTTYPE DHT11     // QUITAR SLASH EN CASO DE USAR EL SENSOR DHT 11
+
+char auth[] = "aahlCOeIcIh8FS3OcwHXYgXmBqTpnKT1";//Enter your Auth token
+char ssid[] = "TUWIFI";//Enter your WIFI name
+char pass[] = "TUPASS";//Enter your WIFI password
+
+DHT dht(DHTPIN, DHTTYPE);  //ACTIVAR LIBRERIA DHT
+BlynkTimer timer;
+
+void moisture() {
+  int value = analogRead(A0);
+  value = map(value, 0, 1023, 0, 100);
+  Blynk.virtualWrite(V0, value);
+
+  Serial.println(value);
+}
+
+void sendSensor()  //INICIO DE FUNCIÓN QUE MIDE HUMEDAD Y TEMPERATURA DEL DHT11
+{
+  float h = dht.readHumidity();
+  float t = dht.readTemperature(); // or dht.readTemperature(true) for Fahrenheit
+
+  if (isnan(h) || isnan(t)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  // You can send any value at any time.
+  // Please don't send more that 10 values per second.
+  Blynk.virtualWrite(V5, t);    //TRASPASO DE DATOS DE TEMPERATURA A PIN VIRTUAL V5
+  Blynk.virtualWrite(V6, h);    //TRASPASO DE DATOS DE HUMEDAD A PIN VIRTUAL V6
+}
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(D4, OUTPUT);
+  digitalWrite(D4, HIGH);
+
+  Blynk.begin(auth, ssid, pass, "blynk.mindsteam.cl", 8080);
+  Serial.println("Reading From the Sensor ...");    //ESCRIBIR EN MONITOR SERIAL EL MENSAJE
+  delay(2000);
+  dht.begin();  //INICIO DE FUNCIÓN DEL TERMÓMETRO
+
+  timer.setInterval(100L, moisture);
+}
+void loop() {
+  Blynk.run();
+  timer.run();
+}
